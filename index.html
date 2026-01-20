@@ -8,17 +8,19 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://unpkg.com/lucide-vue-next@latest"></script>
-    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
     <style>
-        /* 简单的自定义动画 */
         .fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease; }
         .fade-enter-from, .fade-leave-to { opacity: 0; }
         body { background-color: #f8fafc; }
+        /* 徽章样式微调 */
+        #wcb.carbonbadge { --b1: #ffffff; --b2: #22c55e; --font: sans-serif; }
     </style>
 </head>
 <body>
 
-<div id="app" class="min-h-screen text-slate-900 font-sans">
+<div id="app" class="min-h-screen flex flex-col text-slate-900 font-sans">
     
     <header class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
         <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -28,19 +30,23 @@
                 </div>
                 <span class="text-xl font-bold tracking-tight text-slate-900">PermeationNet</span>
             </div>
-            <a href="#" class="text-sm text-slate-500 hover:text-blue-600 transition-colors">About Project</a>
+            <div class="flex items-center gap-4 text-sm">
+                <span class="text-slate-500 hidden md:inline" id="busuanzi_container_site_pv" style="display:none">
+                    Total Views: <span id="busuanzi_value_site_pv" class="font-bold text-blue-600">...</span>
+                </span>
+                <a href="https://github.com" target="_blank" class="text-slate-500 hover:text-blue-600 transition-colors">GitHub</a>
+            </div>
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 py-12">
+    <main class="max-w-5xl mx-auto px-4 py-12 flex-grow">
         
         <div class="text-center mb-12">
             <h1 class="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
                 Open Skin Permeation Database
             </h1>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                Explore curated ibuprofen permeation data. <br>
-                <span class="text-sm text-slate-400">No installation required. Pure static web technology.</span>
+                Explore curated ibuprofen permeation data from scientific literature.
             </p>
         </div>
 
@@ -63,7 +69,11 @@
             <div class="text-xs text-slate-400">Live Search Active</div>
         </div>
 
-        <div class="grid gap-5">
+        <div v-if="loading" class="text-center py-20">
+            <p class="text-slate-400 animate-pulse">Loading data...</p>
+        </div>
+
+        <div v-else class="grid gap-5">
             <div v-for="item in filteredData" :key="item.id" 
                  class="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 overflow-hidden">
                 
@@ -122,81 +132,58 @@
                 </div>
             </div>
 
-            <div v-if="filteredData.length === 0" class="text-center py-20 bg-white rounded-xl border border-dashed border-slate-300">
+            <div v-if="filteredData.length === 0 && !loading" class="text-center py-20 bg-white rounded-xl border border-dashed border-slate-300">
                 <p class="text-slate-500">No records found.</p>
             </div>
         </div>
-
-        <footer class="text-center text-slate-400 text-sm mt-20 pb-10">
-            Powered by GitHub Pages & Open Source
-        </footer>
-
     </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-sm text-slate-500 text-center md:text-left">
+                <p>Created with Open Source Tech</p>
+                <p class="mt-1" id="busuanzi_container_site_uv" style="display:none">
+                    Unique Visitors: <span id="busuanzi_value_site_uv" class="font-bold text-slate-700">...</span>
+                </p>
+            </div>
+            
+            <div id="wcb" class="carbonbadge"></div>
+            <script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
+        </div>
+    </footer>
 </div>
 
-<script>
-    const { createApp, ref, computed, nextTick } = Vue;
+<script src="data.js"></script>
 
-    // ---------------------------------------------------------
-    // ⚠️ 你的数据放在这里！
-    // 以后要更新数据，直接替换这个 rawData 数组的内容即可。
-    // ---------------------------------------------------------
-    const rawData = [
-        {
-            "id": 1,
-            "title": "Transdermal Delivery of Ibuprofen Utilizing a Novel Solvent-Free PSA",
-            "doi": "10.1007/s12247-017-9305-x",
-            "concentration": "10 wt%",
-            "value": 85.73,
-            "unit": "µg cm−2",
-            "time": 24.0,
-            "time_unit": "h",
-            "kind": "amount_per_area",
-            "evidence": [
-                {"field": "Endpoint", "snippet": "the cumulative permeated amount... was 85.73 μg cm−2"},
-                {"field": "Formulation", "snippet": "10 wt% of API (patch thickness 160 μm)"}
-            ]
-        },
-        {
-            "id": 2,
-            "title": "Enhanced stability and skin permeation of ibuprofen-loaded solid lipid nanoparticles",
-            "doi": "10.1016/j.ijpx.2023.100205",
-            "concentration": "1% w/w",
-            "value": 6.50,
-            "unit": "mg/cm2/h",
-            "time": 1.0,
-            "time_unit": "h",
-            "kind": "flux",
-            "evidence": [
-                {"field": "Method", "snippet": "performed with static Franz diffusion cells"},
-                {"field": "Concentration", "snippet": "Ibuprofen (1% w/w) was dissolved in..."}
-            ]
-        },
-        {
-            "id": 3,
-            "title": "New amino acid propyl ester ibuprofenates from synthesis to use",
-            "doi": "10.1039/d2ra05804a",
-            "concentration": "4.775 g/L",
-            "value": 335.13,
-            "unit": "mg cm−2",
-            "time": 24.0,
-            "time_unit": "h",
-            "kind": "amount_per_area",
-            "evidence": [
-                {"field": "Result", "snippet": "Q = 335.13 mg/cm2 after 24 h"}
-            ]
-        }
-    ];
+<script>
+    const { createApp, ref, computed, nextTick, onMounted } = Vue;
 
     createApp({
         setup() {
             const searchTerm = ref('');
             const expandedId = ref(null);
+            const dataList = ref([]);
+            const loading = ref(true);
+
+            // 初始化加载数据
+            onMounted(() => {
+                // 检查外部文件是否加载成功
+                if (window.dbData) {
+                    dataList.value = window.dbData;
+                    loading.value = false;
+                } else {
+                    console.error("Data not found. Please ensure data.js is loaded.");
+                    // 这里可以放一些假数据防止页面空白
+                    dataList.value = [];
+                    loading.value = false;
+                }
+                if (window.lucide) window.lucide.createIcons();
+            });
 
             const filteredData = computed(() => {
                 const term = searchTerm.value.toLowerCase();
-                if (!term) return rawData;
-                return rawData.filter(item => 
+                if (!term) return dataList.value;
+                return dataList.value.filter(item => 
                     (item.title && item.title.toLowerCase().includes(term)) ||
                     (item.concentration && item.concentration.toLowerCase().includes(term)) ||
                     (item.doi && item.doi.includes(term))
@@ -207,9 +194,7 @@
                 expandedId.value = expandedId.value === id ? null : id;
             };
 
-            // 这是一个小技巧：Vue渲染完DOM后，我们需要让图标库Lucide重新扫描一下页面，把<i>标签变成SVG图标
             Vue.watchEffect(() => {
-                // 当数据变化时，等待DOM更新，然后渲染图标
                 const data = filteredData.value; 
                 const expanded = expandedId.value;
                 nextTick(() => {
@@ -221,11 +206,9 @@
                 searchTerm,
                 filteredData,
                 expandedId,
-                toggleExpand
+                toggleExpand,
+                loading
             };
-        },
-        mounted() {
-            if (window.lucide) window.lucide.createIcons();
         }
     }).mount('#app');
 </script>
