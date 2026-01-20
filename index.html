@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PermeationNet DB - Open Data</title>
+    <title>PermeationNet DB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -14,87 +14,115 @@
         .fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease; }
         .fade-enter-from, .fade-leave-to { opacity: 0; }
         body { background-color: #f8fafc; }
-        /* 徽章样式微调 */
-        #wcb.carbonbadge { --b1: #ffffff; --b2: #22c55e; --font: sans-serif; }
+        /* 去掉链接下划线 */
+        a { text-decoration: none; }
     </style>
 </head>
 <body>
 
 <div id="app" class="min-h-screen flex flex-col text-slate-900 font-sans">
     
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
-        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
-                    <i data-lucide="flask-conical" class="w-5 h-5"></i>
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm backdrop-blur-md bg-white/90">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+            
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+                   <img src="logo.png" class="w-9 h-9 object-contain">
                 </div>
-                <span class="text-xl font-bold tracking-tight text-slate-900">PermeationNet</span>
-            </div>
-            <div class="flex items-center gap-4 text-sm">
-                <span class="text-slate-500 hidden md:inline" id="busuanzi_container_site_pv" style="display:none">
-                    Total Views: <span id="busuanzi_value_site_pv" class="font-bold text-blue-600">...</span>
+                <span class="text-lg md:text-xl font-bold tracking-tight text-slate-800">
+                    PermeationNet
                 </span>
-                <a href="https://github.com" target="_blank" class="text-slate-500 hover:text-blue-600 transition-colors">GitHub</a>
+            </div>
+
+            <div class="flex items-center gap-3 md:gap-4">
+                
+                <a href="https://www.websitecarbon.com/website/yurbro-github-io-my-research-db/" target="_blank" 
+                   class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-green-50 text-green-700 rounded-full border border-green-200 hover:bg-green-100 hover:border-green-300 transition-all group">
+                    <div class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </div>
+                    <div class="flex flex-col leading-none">
+                        <span class="text-[10px] font-bold uppercase text-green-800/60">Carbon Score</span>
+                        <span class="text-xs font-bold font-mono">0.06g CO₂</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/yurbro/my-research-db" target="_blank" 
+                   class="flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-slate-700 hover:shadow-lg transition-all">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">GitHub</span>
+                </a>
             </div>
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 py-12 flex-grow">
+    <main class="max-w-5xl mx-auto px-4 py-12 flex-grow w-full">
         
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
                 Open Skin Permeation Database
             </h1>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                Explore curated ibuprofen permeation data from scientific literature.
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                Explore curated ibuprofen permeation data from scientific literature. 
+                <br>Open access, transparent, and eco-friendly.
             </p>
         </div>
 
-        <div class="relative max-w-xl mx-auto mb-10 group">
-            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+        <div class="relative max-w-xl mx-auto mb-10 group z-10">
+            <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                <i data-lucide="search" class="w-5 h-5 text-slate-400 group-focus-within:text-blue-500 transition-colors"></i>
             </div>
             <input 
                 v-model="searchTerm"
                 type="text" 
-                class="block w-full pl-11 pr-4 py-4 bg-white border border-slate-200 rounded-2xl text-lg shadow-sm placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                class="block w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-full text-lg shadow-sm placeholder:text-slate-400 focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all"
                 placeholder="Search keywords (e.g. 10 wt%, Franz)..."
             >
         </div>
 
-        <div class="flex items-center justify-between mb-6 px-1">
-            <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider">
+        <div class="flex items-center justify-between mb-6 px-2 border-b border-slate-100 pb-2">
+            <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider flex items-center gap-2">
+                <i data-lucide="database" class="w-4 h-4"></i>
                 {{ filteredData.length }} Records Found
             </h2>
-            <div class="text-xs text-slate-400">Live Search Active</div>
+            <div class="text-xs text-slate-400 font-mono">
+                Live Filter
+            </div>
+        </div>
+
+        <div v-if="!loading && dataList.length === 0" class="bg-red-50 border border-red-200 rounded-xl p-6 text-center text-red-600">
+            <p class="font-bold mb-2">Data Not Found!</p>
+            <p class="text-sm">Please ensure <code>data.js</code> is in the same folder and contains <code>window.dbData = [...]</code>.</p>
         </div>
 
         <div v-if="loading" class="text-center py-20">
-            <p class="text-slate-400 animate-pulse">Loading data...</p>
+            <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p class="text-slate-400">Loading library...</p>
         </div>
 
         <div v-else class="grid gap-5">
             <div v-for="item in filteredData" :key="item.id" 
-                 class="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 overflow-hidden">
+                 class="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300 overflow-hidden group">
                 
                 <div class="p-6">
                     <div class="flex flex-col md:flex-row gap-6 justify-between items-start">
                         <div class="flex-1 space-y-3">
                             <div class="flex items-center gap-2 flex-wrap">
-                                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-100">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-100">
                                     {{ item.concentration }}
                                 </span>
-                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600">
+                                <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
                                     {{ item.kind }}
                                 </span>
                             </div>
                             
-                            <h3 class="text-lg font-bold text-slate-900 leading-snug">
+                            <h3 class="text-lg font-bold text-slate-900 leading-snug group-hover:text-blue-700 transition-colors">
                                 {{ item.title }}
                             </h3>
 
                             <div class="flex items-center gap-4 text-sm text-slate-500">
-                                <a :href="'https://doi.org/' + item.doi" target="_blank" class="flex items-center gap-1 hover:text-blue-600 hover:underline">
+                                <a :href="'https://doi.org/' + item.doi" target="_blank" class="flex items-center gap-1 hover:text-blue-600 hover:underline transition-colors">
                                     <i data-lucide="external-link" class="w-3 h-3"></i>
                                     {{ item.doi }}
                                 </a>
@@ -106,7 +134,7 @@
                                 <div class="text-3xl font-extrabold text-slate-900 tracking-tight">{{ item.value }}</div>
                                 <div class="text-xs text-slate-500 font-medium">{{ item.unit }}</div>
                             </div>
-                            <div class="flex items-center gap-1 text-xs text-slate-400 mt-2">
+                            <div class="flex items-center gap-1 text-xs text-slate-400 mt-2 bg-slate-50 px-2 py-1 rounded">
                                 <i data-lucide="clock" class="w-3 h-3"></i>
                                 {{ item.time }} {{ item.time_unit }}
                             </div>
@@ -121,47 +149,53 @@
                     </div>
                 </div>
 
-                <div v-if="expandedId === item.id" class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-sm animate-fade">
+                <div v-if="expandedId === item.id" class="bg-slate-50/50 px-6 py-4 border-t border-slate-100 text-sm animate-fade">
                     <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Evidence Snippets</h4>
                     <div class="space-y-3">
-                        <div v-for="(ev, idx) in item.evidence" :key="idx" class="bg-white p-3 rounded border border-slate-200 shadow-sm">
-                            <span class="text-blue-600 font-bold text-xs block mb-1">{{ ev.field }}</span>
-                            <p class="text-slate-700 italic">"{{ ev.snippet }}"</p>
+                        <div v-for="(ev, idx) in item.evidence" :key="idx" class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                            <span class="text-blue-600 font-bold text-xs block mb-1 uppercase">{{ ev.field }}</span>
+                            <div class="flex gap-2">
+                                <div class="w-0.5 bg-blue-200 rounded-full"></div>
+                                <p class="text-slate-700 italic leading-relaxed">"{{ ev.snippet }}"</p>
+                            </div>
+                            <div v-if="ev.locator" class="mt-2 text-right">
+                                <span class="text-[10px] bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">
+                                    {{ ev.locator }}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div v-if="filteredData.length === 0 && !loading" class="text-center py-20 bg-white rounded-xl border border-dashed border-slate-300">
-                <p class="text-slate-500">No records found.</p>
+            <div v-if="filteredData.length === 0 && !loading && dataList.length > 0" class="text-center py-20">
+                <i data-lucide="file-x" class="w-12 h-12 text-slate-300 mx-auto mb-3"></i>
+                <p class="text-slate-500">No records match your search.</p>
             </div>
         </div>
     </main>
 
-    <footer class="bg-white border-t border-slate-200 mt-auto">
-        <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="text-sm text-slate-500 text-center md:text-left">
-                <p>Created with Open Source Tech</p>
-                <p class="mt-1" id="busuanzi_container_site_uv" style="display:none">
-                    Unique Visitors: <span id="busuanzi_value_site_uv" class="font-bold text-slate-700">...</span>
-                </p>
-            </div>
+    <footer class="bg-white border-t border-slate-200 mt-auto py-8">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <p class="text-sm text-slate-400 mb-2">Created with Open Source Technology</p>
             
-            <a href="https://www.websitecarbon.com/website/yurbro-github-io-my-research-db/" target="_blank" class="group bg-white border border-slate-200 rounded-md py-2 px-3 flex flex-col items-center gap-1 hover:border-green-500 hover:shadow-sm transition-all text-decoration-none">
-                <div class="text-xs text-slate-500 font-medium">Carbon Footprint</div>
-                <div class="flex items-baseline gap-1">
-                    <span class="text-xl font-bold text-slate-800 group-hover:text-green-600 transition-colors">0.06g</span>
-                    <span class="text-xs text-slate-400">CO₂ / View</span>
-                </div>
-                <div class="text-[10px] font-bold tracking-wide text-green-600 bg-green-50 px-2 py-0.5 rounded-full mt-1">
-                    CLEANER THAN 97%
-                </div>
-            </a>
+            <div class="md:hidden flex justify-center mb-4">
+                 <a href="https://www.websitecarbon.com/website/yurbro-github-io-my-research-db/" target="_blank" class="text-xs text-green-600 border border-green-200 px-3 py-1 rounded-full">
+                    🌱 0.06g CO₂ / View
+                 </a>
+            </div>
+
+            <div class="text-xs text-slate-400 flex justify-center gap-4" id="busuanzi_container_site_pv" style="display:none">
+                <span>Total Views: <span id="busuanzi_value_site_pv" class="font-bold text-slate-600">...</span></span>
+                <span id="busuanzi_container_site_uv" style="display:none">
+                   Visitors: <span id="busuanzi_value_site_uv" class="font-bold text-slate-600">...</span>
+                </span>
+            </div>
         </div>
     </footer>
 </div>
 
-<script src="data.js"></script>
+<script src="data.js?v=1"></script>
 
 <script>
     const { createApp, ref, computed, nextTick, onMounted } = Vue;
@@ -173,19 +207,18 @@
             const dataList = ref([]);
             const loading = ref(true);
 
-            // 初始化加载数据
             onMounted(() => {
-                // 检查外部文件是否加载成功
-                if (window.dbData) {
-                    dataList.value = window.dbData;
-                    loading.value = false;
-                } else {
-                    console.error("Data not found. Please ensure data.js is loaded.");
-                    // 这里可以放一些假数据防止页面空白
-                    dataList.value = [];
-                    loading.value = false;
-                }
-                if (window.lucide) window.lucide.createIcons();
+                // 延时一点点以显示加载动画 (可选)
+                setTimeout(() => {
+                    if (window.dbData) {
+                        dataList.value = window.dbData;
+                        loading.value = false;
+                    } else {
+                        console.error("❌ ERROR: window.dbData is undefined. Check data.js!");
+                        loading.value = false; // 停止加载动画，显示错误提示
+                    }
+                    if (window.lucide) window.lucide.createIcons();
+                }, 500);
             });
 
             const filteredData = computed(() => {
@@ -215,12 +248,12 @@
                 filteredData,
                 expandedId,
                 toggleExpand,
-                loading
+                loading,
+                dataList
             };
         }
     }).mount('#app');
 </script>
 
 </body>
-
 </html>
