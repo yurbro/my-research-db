@@ -1,76 +1,81 @@
 # 🧪 PermeationNet: Open Skin Permeation Database
 
+<div align="center">
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Vue.js](https://img.shields.io/badge/Vue.js-3.0-4FC08D?logo=vue.js)](https://vuejs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 [![GitHub Pages](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-blue?logo=github)](https://pages.github.com/)
 
-**PermeationNet** 是一个专注于布洛芬（Ibuprofen）及其他药物皮肤渗透数据的开源数据库项目。旨在通过结构化的数据展示，帮助研究人员快速查阅文献中的渗透参数、实验条件及证据片段。
+[**English**](README.md) | [**简体中文**](README_zh-CN.md)
 
-🔗 **在线访问:** [点击这里查看演示](https://yurbro.github.io/my-research-db/) 
+</div>
 
----
+**PermeationNet** is an open-source database dedicated to skin permeation data of Ibuprofen and other APIs. It aims to provide researchers with quick access to structured permeation parameters, experimental conditions, and evidence snippets extracted from scientific literature.
 
-## ✨ 项目亮点
-
-* **⚡️ 极速体验**: 基于 Vue.js 的响应式架构，提供毫秒级的搜索和筛选体验。
-* **📱 优雅界面**: 使用 Tailwind CSS 构建的现代化 UI，适配桌面端与移动端。
-* **📄 证据溯源**: 每一条数据都关联了 DOI 链接和原始文献中的文本片段（Evidence Snippets），确保数据可信度。
-* **🛠 零依赖部署**: 纯静态网页（Single File Component），无需安装 Node.js、数据库或后端服务，下载即用。
+🔗 **Live Demo:** [Click here to explore](https://yurbro.github.io/my-research-db/)
 
 ---
 
-## 🚀 如何使用
+## ✨ Highlights
 
-### 1. 在线浏览
-直接访问我们的 [GitHub Pages 页面](https://yurbro.github.io/my-research-db/) 即可开始检索数据。
+* **⚡️ Blazing Fast**: Built with Vue.js reactive architecture, offering millisecond-level search and filtering.
+* **📱 Modern UI**: Designed with Tailwind CSS, fully responsive for both desktop and mobile devices.
+* **📄 Evidence-Based**: Every record is linked to its DOI and includes original text snippets (Evidence Snippets) to ensure data credibility.
+* **🛠 Zero Dependency**: Pure static web application (Single File Component approach). No Node.js installation, database, or backend required. Just download and run.
 
-### 2. 本地运行
-如果你想在本地查看代码或离线使用：
+---
 
-1.  克隆或下载本项目：
+## 🚀 How to Use
+
+### 1. Online Access
+Visit our [GitHub Pages](https://yurbro.github.io/my-research-db/) to start searching the database immediately.
+
+### 2. Run Locally
+If you want to view the code or use the database offline:
+
+1.  Clone the repository:
     ```bash
-    git clone [https://yurbro.github.io/my-research-db/.git](https://yurbro.github.io/my-research-db/.git)
+    git clone [https://github.com/yurbro/my-research-db.git](https://github.com/yurbro/my-research-db.git)
     ```
-2.  进入文件夹，**直接双击打开 `index.html`**。
-3.  没错，就是这么简单！不需要 `npm install`，也不需要配置服务器。
+2.  Enter the folder and **simply double-click `index.html`**.
+3.  That's it! No `npm install` or server configuration needed.
 
 ---
 
-## 📊 数据更新指南
+## 📊 Data Update Guide
 
-本项目的核心是一个纯 HTML 文件，数据直接嵌入在代码中。如果你需要更新数据集：
+This project separates logic from data for easier maintenance.
 
-1.  准备好你的清洗后的数据（JSON 格式）。
-2.  使用文本编辑器（如 VS Code, Notepad++）打开 `index.html`。
-3.  搜索代码中的 `const rawData` 变量。
-4.  将 `[...]` 中的内容替换为你新的 JSON 数据。
-5.  保存文件并提交到 GitHub，网页会自动更新。
+1.  Prepare your cleaned data in JSON format.
+2.  Open the `data.js` file in a text editor.
+3.  Replace the content inside `window.dbData = [...]` with your new data.
+4.  Save the file. Open `index.html` to see the changes immediately.
 
-### 数据字段说明
+### Data Fields
 
-| 字段名 | 类型 | 说明 |
+| Field | Type | Description |
 | :--- | :--- | :--- |
-| `title` | String | 文献标题 |
-| `doi` | String | 数字对象标识符 (不含 https 前缀) |
-| `concentration` | String | 药物浓度 (如 "10 wt%") |
-| `value` | Number | 渗透值 (Q_final 或 Flux) |
-| `unit` | String | 数值单位 (如 "µg cm−2") |
-| `evidence` | Array | 包含 `field` (字段名) 和 `snippet` (原文片段) 的证据列表 |
+| `title` | String | Title of the publication |
+| `doi` | String | Digital Object Identifier (without https prefix) |
+| `concentration` | String | Drug concentration (e.g., "10 wt%") |
+| `value` | Number | Permeation value (Q_final or Flux) |
+| `unit` | String | Unit of measurement (e.g., "µg cm−2") |
+| `evidence` | Array | List of evidence snippets containing `field` and `snippet` |
 
 ---
 
-## 🤝 贡献与反馈
+## 🤝 Contribution
 
-这是一个开源项目，非常欢迎社区贡献！
+Contributions are welcome!
 
-* 如果你发现了数据错误，请提交 **Issue**。
-* 如果你想改进网页界面，欢迎提交 **Pull Request**。
+* Found a data error? Please submit an **Issue**.
+* Want to improve the UI? Feel free to submit a **Pull Request**.
 
-## 📜 许可证
+## 📜 License
 
-本项目采用 [MIT License](LICENSE) 开源许可证。
-数据内容来源于公开科学文献，仅供科研参考。
+This project is licensed under the [MIT License](LICENSE).
+Data content is sourced from public scientific literature and is for research reference only.
 
 ---
 *Created with ❤️ for Open Science.*
