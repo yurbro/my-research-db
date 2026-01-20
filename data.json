@@ -1,0 +1,471 @@
+window.dbData = [
+  {
+    "title": "Transdermal Delivery of Ibuprofen Utilizing a Novel Solvent-Free Pressure-sensitive Adhesive (PSA): TEPI® Technology",
+    "doi": "10.1007/s12247-017-9305-x",
+    "concentration": "10 wt%",
+    "value": 85.73,
+    "unit": "µg cm−2",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Endpoint Q_final@t_last",
+        "locator": "PAGE 5",
+        "snippet": "the cumulative permeated amount for...human skin was 85.73 μg cm−2 for the same period."
+      },
+      {
+        "field": "Franz configuration",
+        "locator": "PAGE 1",
+        "snippet": "the investigation of potential novel transdermal patch technology (TEPI®) delivering ibuprofen as the active pharmaceutical ingredient (API)..."
+      },
+      {
+        "field": "Ibuprofen concentration",
+        "locator": "PAGE 7",
+        "snippet": "the optimized formulation for ibuprofen patch...10 wt% of API (patch thickness 160 μm)..."
+      }
+    ],
+    "id": 1
+  },
+  {
+    "title": "Enhanced stability and skin permeation of ibuprofen-loaded solid lipid nanoparticles based binary solid lipid matrix: Effect of surfactant and lipid compositions.",
+    "doi": "10.1016/j.ijpx.2023.100205",
+    "concentration": "1% w/w",
+    "value": 6.5,
+    "unit": "mg/cm2/h",
+    "time": 1.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Franz Cell Use",
+        "locator": "PAGE 2",
+        "snippet": "In vitro skin permeation studies were performed with static Franz diffusion cells."
+      },
+      {
+        "field": "Ibuprofen Concentration",
+        "locator": "PAGE 2",
+        "snippet": "Ibuprofen (1% w/w) was dissolved in 9% w/w melted lipid at 80 ◦C."
+      }
+    ],
+    "id": 2
+  },
+  {
+    "title": "New amino acid propyl ester ibuprofenates from synthesis to use in drug delivery systems.",
+    "doi": "10.1039/d2ra05804a",
+    "concentration": "4.775 g IBU per dm³",
+    "value": 335.13,
+    "unit": "mg cm−2",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "franz confirmed",
+        "locator": "Table 4",
+        "snippet": "The permeability parameters of the obtained compounds were similar to those determined for ibuprofen."
+      },
+      {
+        "field": "ibuprofen concentration 5% w/w",
+        "locator": "Table 3",
+        "snippet": "4.775 g IBU per dm³ equates to 4775 mg per liter, which is equivalent to 5% w/w (or 50 mg/g)."
+      },
+      {
+        "field": "Q_final@t_last",
+        "locator": "Table 4",
+        "snippet": "Q = 335.13 mg/cm2 after 24 h."
+      }
+    ],
+    "id": 3
+  },
+  {
+    "title": "New amino acid propyl ester ibuprofenates from synthesis to use in drug delivery systems.",
+    "doi": "10.1039/d2ra05804a",
+    "concentration": "4.596 g IBU per dm³",
+    "value": 454.86,
+    "unit": "mg cm−2",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Q_final",
+        "locator": "PAGE 6",
+        "snippet": "the cumulative amount of substance permeated during the 24 h study was 454.86 mg cm−2."
+      }
+    ],
+    "id": 4
+  },
+  {
+    "title": "New amino acid propyl ester ibuprofenates from synthesis to use in drug delivery systems.",
+    "doi": "10.1039/d2ra05804a",
+    "concentration": "4.188 g IBU per dm³",
+    "value": 284.27,
+    "unit": "mg cm−2",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "endpoint_main",
+        "locator": "PAGE 6",
+        "snippet": "The cumulative mass of penetrated compound was about ten times higher for the obtained derivatives than for ibuprofen. A\ue09der 24 h of permeation, the cumulative mass of penetrated compound was about ten times higher for the obtained derivatives than for ibuprofen."
+      }
+    ],
+    "id": 5
+  },
+  {
+    "title": "New amino acid propyl ester ibuprofenates from synthesis to use in drug delivery systems.",
+    "doi": "10.1039/d2ra05804a",
+    "concentration": "4.577 g IBU per dm³",
+    "value": 319.22,
+    "unit": "mg cm−2",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "endpoint",
+        "locator": "PAGE 6",
+        "snippet": "the percentage of the applied dose after 24 h (in terms of ibuprofen) was higher for [TrpOPr][IBU] and [PheOPr][IBU]."
+      }
+    ],
+    "id": 6
+  },
+  {
+    "title": "An evaluation of crude palm oil (CPO) and tocotrienol rich fraction (TRF) of palm oil as percutaneous permeation enhancers using full-thickness human skin.",
+    "doi": "10.1080/10837450.2018.1509347",
+    "concentration": "129.0 ± 1.2 mg/mL (CPO)",
+    "value": 30.6,
+    "unit": "mg/cm2 h",
+    "time": 72.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "ibuprofen",
+        "locator": "PAGE 4",
+        "snippet": "Both TRF and CPO were shown to significantly enhance the permeation of ibuprofen with flux values of 30.6 mg/cm2 h and 23.0 mg/cm2 h respectively."
+      }
+    ],
+    "id": 7
+  },
+  {
+    "title": "Microneedle pretreatment enhances the percutaneous permeation of hydrophilic compounds with high melting points.",
+    "doi": "10.1186/2050-6511-13-5",
+    "concentration": "23.4 mg/ml",
+    "value": 431.52,
+    "unit": "μg/cm²/h",
+    "time": 6.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Franz type diffusion cell with ibuprofen",
+        "locator": "PAGE 6",
+        "snippet": "Jmax (μg/cm²/h), 431.52... the maximum flux (Jmax) is up to 3-fold (ketoprofen, ibuprofen) to 7-fold (diclofenac) higher in the microneedle treated skin samples."
+      }
+    ],
+    "id": 8
+  },
+  {
+    "title": "In vitro enhancement of lactate esters on the percutaneous penetration of drugs with different lipophilicity.",
+    "doi": "10.1208/s12249-010-9449-1",
+    "concentration": "Saturated solution in propylene glycol",
+    "value": 375.71,
+    "unit": "μg/cm2/h",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Franz Diffusion Cell",
+        "locator": "PAGE 3",
+        "snippet": "the permeability of drug through hairless rat skin was measured in vitro with a Franz diffusion cell system (1.65 cm2 in area)..."
+      }
+    ],
+    "id": 9
+  },
+  {
+    "title": "Influence of critical parameters of nanosuspension formulation on the permeability of a poorly soluble drug through the skin--a case study.",
+    "doi": "10.1208/s12249-013-9995-4",
+    "concentration": "5% w/v",
+    "value": 1142.4,
+    "unit": "μg",
+    "time": 72.0,
+    "time_unit": "h",
+    "kind": "amount_total",
+    "evidence": [
+      {
+        "field": "Q_final@t_last",
+        "locator": "PAGE 5",
+        "snippet": "The cumulative amount of drug permeated (μg) 72 h (SD) 1142.4 (107.5)"
+      }
+    ],
+    "id": 10
+  },
+  {
+    "title": "An ex vivo skin model to probe modulation of local cutaneous arachidonic acid inflammation pathway.",
+    "doi": "10.14440/jbm.2020.319",
+    "concentration": "10%",
+    "value": 5.2,
+    "unit": "ng/cm2",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Franz cell type",
+        "locator": "PAGE 1",
+        "snippet": "Ex vivo porcine skin, mounted in Franz diffusion cells"
+      }
+    ],
+    "id": 11
+  },
+  {
+    "title": "Development and Characterization of Niosomal Gel System using Lallementia royaleana Benth. mucilage for the treatment of Rheumatoid Arthritis.",
+    "doi": "10.22037/ijpr.2020.112887.14003",
+    "concentration": "720 µg/100 g",
+    "value": 1.999,
+    "unit": "mg cm-2",
+    "time": 8.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Q_final@t_last",
+        "locator": "PAGE 12",
+        "snippet": "...Amount of drug permeated[Q] (mg cm-2) ± SD... G1 (2% Carbopol) 1.999 ± 1.34"
+      }
+    ],
+    "id": 12
+  },
+  {
+    "title": "Development and Characterization of Niosomal Gel System using Lallementia royaleana Benth. mucilage for the treatment of Rheumatoid Arthritis.",
+    "doi": "10.22037/ijpr.2020.112887.14003",
+    "concentration": "720 µg/100 g",
+    "value": 10.66,
+    "unit": "mg cm-2 h-1",
+    "time": 1.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Franz Diffusion Cell Study",
+        "locator": "PAGE 12",
+        "snippet": "Drug flux [Jss] (mg cm-2 h-1) 10.66 ± 1.82"
+      }
+    ],
+    "id": 13
+  },
+  {
+    "title": "Permeation Enhancer in Microemulsions and Microemulsion-Based Gels: A Comparison of Diethylene Glycol Monoethyl Ether and Oleyl Alcohol",
+    "doi": "10.3390/gels11010041",
+    "concentration": "5% w/w",
+    "value": 127.4,
+    "unit": "µg/cm²/h",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Q_final",
+        "locator": "PAGE 6",
+        "snippet": "Flux of F2 was the highest, statistically higher than F4...127.4 ± 3.8 µg/cm²/h."
+      }
+    ],
+    "id": 14
+  },
+  {
+    "title": "Permeation Enhancer in Microemulsions and Microemulsion-Based Gels: A Comparison of Diethylene Glycol Monoethyl Ether and Oleyl Alcohol",
+    "doi": "10.3390/gels11010041",
+    "concentration": "5% w/w",
+    "value": 124.5,
+    "unit": "µg/cm2/h",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Franz Cell Study",
+        "locator": "PAGE 6",
+        "snippet": "The cumulative amount of ibuprofen permeated by 24 h was significantly higher from F2 (p < 0.05) than from the other formulations."
+      }
+    ],
+    "id": 15
+  },
+  {
+    "title": "Enhancing Transdermal Delivery: Investigating the Impact of Permeation Promoters on Ibuprofen Release and Penetration from Medical Patches-In Vitro Research",
+    "doi": "10.3390/ijms242115632",
+    "concentration": "5%",
+    "value": 2.8,
+    "unit": "mg/cm2",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Q_final",
+        "locator": "PAGE 13",
+        "snippet": "Q%24 h TP-IBU 68.386 ± 1.210"
+      }
+    ],
+    "id": 16
+  },
+  {
+    "title": "Enhancing Transdermal Delivery: Investigating the Impact of Permeation Promoters on Ibuprofen Release and Penetration from Medical Patches-In Vitro Research",
+    "doi": "10.3390/ijms242115632",
+    "concentration": "5%",
+    "value": 5.0,
+    "unit": "mg/cm2/h",
+    "time": 1.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "endpoint measurement",
+        "locator": "PAGE 13",
+        "snippet": "TP-IBU exhibited the highest penetration of ibuprofen, with a cumulative permeation of 163.306 ± 24.418 µg/cm2."
+      }
+    ],
+    "id": 17
+  },
+  {
+    "title": "Enhancing Transdermal Delivery: Investigating the Impact of Permeation Promoters on Ibuprofen Release and Penetration from Medical Patches-In Vitro Research",
+    "doi": "10.3390/ijms242115632",
+    "concentration": "5%",
+    "value": 3.2,
+    "unit": "mg/cm2",
+    "time": 36.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Q_final @ t_last",
+        "locator": "Page 14",
+        "snippet": "Cumulative Permeation Mass [µg/cm2]"
+      }
+    ],
+    "id": 18
+  },
+  {
+    "title": "Evaluation of Formulation Parameters on Permeation of Ibuprofen from Topical Formulations Using Strat-M® Membrane",
+    "doi": "10.3390/pharmaceutics12020151",
+    "concentration": "5% w/w",
+    "value": 163.2,
+    "unit": "µg/cm2",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "endpoint_value",
+        "locator": "PAGE 10",
+        "snippet": "cumulative amount of drug permeated at the end of 24 h was highest for clear gel (3% w/w ibuprofen; F6: 739.6 ± 36.1 µg/cm2) followed by cream with high concentration of ibuprofen in suspended form (5% w/w; F3: 320.8 ± 17.53 µg/cm2)..."
+      }
+    ],
+    "id": 19
+  },
+  {
+    "title": "Evaluation of Formulation Parameters on Permeation of Ibuprofen from Topical Formulations Using Strat-M® Membrane",
+    "doi": "10.3390/pharmaceutics12020151",
+    "concentration": "5% w/w",
+    "value": 320.8,
+    "unit": "µg/cm2",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Cumulative amount of drug permeated",
+        "locator": "PAGE 1",
+        "snippet": "Cumulative amount of drug permeated at the end of 24 h was highest for clear gel (3% w/w ibuprofen; F6: 739.6 ± 36.1 µg/cm2) followed by cream with high concentration of ibuprofen in suspended form (5% w/w; F3: 320.8 ± 17.53 µg/cm2)."
+      }
+    ],
+    "id": 20
+  },
+  {
+    "title": "Evaluation of Formulation Parameters on Permeation of Ibuprofen from Topical Formulations Using Strat-M® Membrane",
+    "doi": "10.3390/pharmaceutics12020151",
+    "concentration": "5% w/w",
+    "value": 739.6,
+    "unit": "µg/cm2",
+    "time": 24.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Cumulative amount of drug permeated",
+        "locator": "PAGE 3",
+        "snippet": "Cumulative amount of drug permeated at the end of 24 h was highest for clear gel (3% w/w ibuprofen; F6: 739.6 ± 36.1 µg/cm2) followed by cream with high concentration of ibuprofen in suspended form (5% w/w; F3: 320.8 ± 17.53 µg/cm2)..."
+      }
+    ],
+    "id": 21
+  },
+  {
+    "title": "Chitin-Glucan Complex Hydrogels: Physical-Chemical Characterization, Stability, In Vitro Drug Permeation, and Biological Assessment in Primary Cells.",
+    "doi": "10.3390/polym15040791",
+    "concentration": "1.0 wt%",
+    "value": 4.26,
+    "unit": "µg/cm2/h",
+    "time": 1.0,
+    "time_unit": "h",
+    "kind": "amount_per_area",
+    "evidence": [
+      {
+        "field": "Franz cell use",
+        "locator": "Page 9",
+        "snippet": "In vitro permeation experiments through Strat-M membranes using Franz diffusion cells showed considerably higher permeation fluxes for caffeine (33.09 µg/cm2/h) and salicylic acid (19.53 µg/cm2/h), compared to ibuprofen sodium and diclofenac sodium (4.26 and 0.44 µg/cm2/h, respectively)."
+      }
+    ],
+    "id": 22
+  },
+  {
+    "title": "N/A",
+    "doi": "10.1016/j.ejpb.2020.05.013",
+    "concentration": "N/A",
+    "value": "N/A",
+    "unit": "N/A",
+    "time": "N/A",
+    "time_unit": "µg/mL",
+    "kind": "amount_total",
+    "evidence": [],
+    "id": 23
+  },
+  {
+    "title": "N/A",
+    "doi": "10.1016/j.ijpharm.2016.03.043",
+    "concentration": "N/A",
+    "value": "N/A",
+    "unit": "N/A",
+    "time": "N/A",
+    "time_unit": "h",
+    "kind": "amount_total",
+    "evidence": [],
+    "id": 24
+  },
+  {
+    "title": "N/A",
+    "doi": "10.1016/j.ijpharm.2016.03.043",
+    "concentration": "N/A",
+    "value": "N/A",
+    "unit": "N/A",
+    "time": "N/A",
+    "time_unit": "h",
+    "kind": "amount_total",
+    "evidence": [],
+    "id": 25
+  },
+  {
+    "title": "N/A",
+    "doi": "10.1016/j.ijpharm.2016.03.043",
+    "concentration": "N/A",
+    "value": "N/A",
+    "unit": "N/A",
+    "time": "N/A",
+    "time_unit": "h",
+    "kind": "amount_total",
+    "evidence": [],
+    "id": 26
+  }
+];
