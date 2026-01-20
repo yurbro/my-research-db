@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PermeationNet DB - Open Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide-vue-next@latest"></script>
+    
+    <style>
+        /* 简单的自定义动画 */
+        .fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease; }
+        .fade-enter-from, .fade-leave-to { opacity: 0; }
+        body { background-color: #f8fafc; }
+    </style>
+</head>
+<body>
+
+<div id="app" class="min-h-screen text-slate-900 font-sans">
+    
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
+                    <i data-lucide="flask-conical" class="w-5 h-5"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">PermeationNet</span>
+            </div>
+            <a href="#" class="text-sm text-slate-500 hover:text-blue-600 transition-colors">About Project</a>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-12">
+        
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                Open Skin Permeation Database
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                Explore curated ibuprofen permeation data. <br>
+                <span class="text-sm text-slate-400">No installation required. Pure static web technology.</span>
+            </p>
+        </div>
+
+        <div class="relative max-w-xl mx-auto mb-10 group">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+            </div>
+            <input 
+                v-model="searchTerm"
+                type="text" 
+                class="block w-full pl-11 pr-4 py-4 bg-white border border-slate-200 rounded-2xl text-lg shadow-sm placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                placeholder="Search keywords (e.g. 10 wt%, Franz)..."
+            >
+        </div>
+
+        <div class="flex items-center justify-between mb-6 px-1">
+            <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider">
+                {{ filteredData.length }} Records Found
+            </h2>
+            <div class="text-xs text-slate-400">Live Search Active</div>
+        </div>
+
+        <div class="grid gap-5">
+            <div v-for="item in filteredData" :key="item.id" 
+                 class="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 overflow-hidden">
+                
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row gap-6 justify-between items-start">
+                        <div class="flex-1 space-y-3">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-100">
+                                    {{ item.concentration }}
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600">
+                                    {{ item.kind }}
+                                </span>
+                            </div>
+                            
+                            <h3 class="text-lg font-bold text-slate-900 leading-snug">
+                                {{ item.title }}
+                            </h3>
+
+                            <div class="flex items-center gap-4 text-sm text-slate-500">
+                                <a :href="'https://doi.org/' + item.doi" target="_blank" class="flex items-center gap-1 hover:text-blue-600 hover:underline">
+                                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                                    {{ item.doi }}
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row md:flex-col items-center md:items-end gap-4 md:gap-1 min-w-[140px] border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-6">
+                            <div class="text-right">
+                                <div class="text-3xl font-extrabold text-slate-900 tracking-tight">{{ item.value }}</div>
+                                <div class="text-xs text-slate-500 font-medium">{{ item.unit }}</div>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs text-slate-400 mt-2">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                {{ item.time }} {{ item.time_unit }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+                        <button @click="toggleExpand(item.id)" class="text-sm font-medium text-slate-500 hover:text-blue-600 flex items-center gap-1 transition-colors">
+                            {{ expandedId === item.id ? 'Hide Evidence' : 'View Evidence' }}
+                            <i :data-lucide="expandedId === item.id ? 'chevron-up' : 'chevron-down'" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div v-if="expandedId === item.id" class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-sm animate-fade">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Evidence Snippets</h4>
+                    <div class="space-y-3">
+                        <div v-for="(ev, idx) in item.evidence" :key="idx" class="bg-white p-3 rounded border border-slate-200 shadow-sm">
+                            <span class="text-blue-600 font-bold text-xs block mb-1">{{ ev.field }}</span>
+                            <p class="text-slate-700 italic">"{{ ev.snippet }}"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div v-if="filteredData.length === 0" class="text-center py-20 bg-white rounded-xl border border-dashed border-slate-300">
+                <p class="text-slate-500">No records found.</p>
+            </div>
+        </div>
+
+        <footer class="text-center text-slate-400 text-sm mt-20 pb-10">
+            Powered by GitHub Pages & Open Source
+        </footer>
+
+    </main>
+</div>
+
+<script>
+    const { createApp, ref, computed, nextTick } = Vue;
+
+    // ---------------------------------------------------------
+    // ⚠️ 你的数据放在这里！
+    // 以后要更新数据，直接替换这个 rawData 数组的内容即可。
+    // ---------------------------------------------------------
+    const rawData = [
+        {
+            "id": 1,
+            "title": "Transdermal Delivery of Ibuprofen Utilizing a Novel Solvent-Free PSA",
+            "doi": "10.1007/s12247-017-9305-x",
+            "concentration": "10 wt%",
+            "value": 85.73,
+            "unit": "µg cm−2",
+            "time": 24.0,
+            "time_unit": "h",
+            "kind": "amount_per_area",
+            "evidence": [
+                {"field": "Endpoint", "snippet": "the cumulative permeated amount... was 85.73 μg cm−2"},
+                {"field": "Formulation", "snippet": "10 wt% of API (patch thickness 160 μm)"}
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Enhanced stability and skin permeation of ibuprofen-loaded solid lipid nanoparticles",
+            "doi": "10.1016/j.ijpx.2023.100205",
+            "concentration": "1% w/w",
+            "value": 6.50,
+            "unit": "mg/cm2/h",
+            "time": 1.0,
+            "time_unit": "h",
+            "kind": "flux",
+            "evidence": [
+                {"field": "Method", "snippet": "performed with static Franz diffusion cells"},
+                {"field": "Concentration", "snippet": "Ibuprofen (1% w/w) was dissolved in..."}
+            ]
+        },
+        {
+            "id": 3,
+            "title": "New amino acid propyl ester ibuprofenates from synthesis to use",
+            "doi": "10.1039/d2ra05804a",
+            "concentration": "4.775 g/L",
+            "value": 335.13,
+            "unit": "mg cm−2",
+            "time": 24.0,
+            "time_unit": "h",
+            "kind": "amount_per_area",
+            "evidence": [
+                {"field": "Result", "snippet": "Q = 335.13 mg/cm2 after 24 h"}
+            ]
+        }
+    ];
+
+    createApp({
+        setup() {
+            const searchTerm = ref('');
+            const expandedId = ref(null);
+
+            const filteredData = computed(() => {
+                const term = searchTerm.value.toLowerCase();
+                if (!term) return rawData;
+                return rawData.filter(item => 
+                    (item.title && item.title.toLowerCase().includes(term)) ||
+                    (item.concentration && item.concentration.toLowerCase().includes(term)) ||
+                    (item.doi && item.doi.includes(term))
+                );
+            });
+
+            const toggleExpand = (id) => {
+                expandedId.value = expandedId.value === id ? null : id;
+            };
+
+            // 这是一个小技巧：Vue渲染完DOM后，我们需要让图标库Lucide重新扫描一下页面，把<i>标签变成SVG图标
+            Vue.watchEffect(() => {
+                // 当数据变化时，等待DOM更新，然后渲染图标
+                const data = filteredData.value; 
+                const expanded = expandedId.value;
+                nextTick(() => {
+                    if (window.lucide) window.lucide.createIcons();
+                });
+            });
+
+            return {
+                searchTerm,
+                filteredData,
+                expandedId,
+                toggleExpand
+            };
+        },
+        mounted() {
+            if (window.lucide) window.lucide.createIcons();
+        }
+    }).mount('#app');
+</script>
+
+</body>
+</html>
